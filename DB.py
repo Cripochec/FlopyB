@@ -2,6 +2,7 @@ import sqlite3
 import logging
 from CONST import database_name
 
+
 # Настройка логирования
 logging.basicConfig(filename='errors.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s', datefmt='%d.%m.%Y / %H:%M:%S')
 
@@ -12,39 +13,82 @@ def connect_db(db_name):
         conn = sqlite3.connect(db_name)
         return conn
     except sqlite3.Error as e:
-        logging.error(f"Error connecting to database: {e}")
+        logging.error(f"No connecting to database: {e}")
         return None
 
-# Функция вставки данных
-def insert_data(conn, table, data):
+
+# Функция добавления таблиц
+def add_tables(con):
     try:
-        cursor = conn.cursor()
-        cursor.execute(f"INSERT INTO {table} VALUES (?, ?, ?)", data)
-        conn.commit()
-        logging.info("Данные успешно вставлены.")
-    except sqlite3.Error as e:
-        logging.error(f"Ошибка вставки данных: {e}")
+        cur = con.cursor()
 
-# Функция обновления данных
-def update_data(conn, table, set_clause, where_clause):
+        create_table_query = '''
+            CREATE TABLE IF NOT EXISTS account (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            login TEXT NOT NULL,
+            pas TEXT NOT NULL
+            );
+            '''
+        cur.execute(create_table_query)
+
+        con.commit()
+        cur.close()
+        con.close()
+    except sqlite3.Error as e:
+        logging.error(f"Tables are not added to the database: {e}")
+        return None
+
+
+# Функция добавления новых аккаунтов
+def add_new_account(con, login, pas):
     try:
-        cursor = conn.cursor()
-        cursor.execute(f"UPDATE {table} SET {set_clause} WHERE {where_clause}")
-        conn.commit()
-        logging.info("Данные успешно обновлены.")
+        cur = con.cursor()
+        add_data_quary = "INSERT INTO account (login, pas) VALUES (?, ?)"
+
+        cur.execute(add_data_quary, (login, pas))
+        con.commit()
+        cur.close()
     except sqlite3.Error as e:
-        logging.error(f"Ошибка обновления данных: {e}")
+        logging.error(f"The data is not entered into the 'account' table: {e}")
 
-# Пример использования функций
-if __name__ == "__main__":
-    conn = connect_db(database_name)
 
-    if conn:
-        # Пример вставки данных
-        insert_data(conn, 'users', (1, 'John Doe', 25))
 
-        # Пример обновления данных
-        update_data(conn, 'users', 'age=30', 'name="John Doe"')
 
-        # Закрытие соединения с базой данных
-        conn.close()
+#Промежуточное получение
+def get_all_logins(con):
+    try:
+        cur = con.cursor()
+        get_all_login_quary = "SELECT login FROM account"
+
+        cur.execute(get_all_login_quary)
+        logins = cur.fetchall()
+        cur.close()
+        return [login[0] for login in logins]
+    except sqlite3.Error as e:
+        logging.error(f"Error fetching logins from 'account' table: {e}")
+        return []
+
+
+def get_password_by_login(con, login):
+    try:
+        cur = con.cursor()
+        get_password_by_login_query = "SELECT id, pas FROM account WHERE login = ?"
+
+        cur.execute(get_password_by_login_query, (login,))
+        result = cur.fetchone()
+        cur.close()
+
+        if result:
+            return result  # Возвращаем кортеж (id, pas)
+        else:
+            return "CODE13"
+    except sqlite3.Error as e:
+        logging.error(f"Error fetching password for login '{login}': {e}")
+        return None
+
+
+
+#
+# con = connect_db(database_name)
+# print(get_all_logins(con))
+# print(get_password_by_login(con, "Андрей"))
