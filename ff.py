@@ -1,7 +1,7 @@
 import requests
 
 def registration_acc():
-    url = 'http://127.0.0.1:5000/api/registration'
+    url = 'http://178.253.23.8:5000/api/registration'
     # Пароли отправлять в хэшированном виде
     json_data = {'login': 'Андрей', 'pas1': '12345', 'pas2': '12345'}
 
@@ -19,7 +19,7 @@ def registration_acc():
 
 
 def login_acc():
-    url = 'http://127.0.0.1:5000/api/login'
+    url = 'http://178.253.23.8:5000/api/login'
     # Пароли отправлять в хэшированном виде
     json_data = {'login': 'Андрей', 'pas': '12345'}
 
