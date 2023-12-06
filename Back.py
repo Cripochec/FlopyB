@@ -52,8 +52,8 @@ class login_acc(Resource):
 
         if result[0] == "CODE13":
             return "CODE13"
-        elif pas == result[0]:
-            return result[1]
+        elif pas == result[1]:
+            return result[0]
         else:
             return "CODE14"
 
@@ -62,6 +62,8 @@ class login_acc(Resource):
         #     return res
         # else:
         #     return res[id]
+
+
 
 # class dd(Resource):
 #     def get(self, id):
