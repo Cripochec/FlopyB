@@ -19,7 +19,7 @@ def registration_acc():
 
 
 def login_acc():
-    url = 'http://178.253.23.8:5000/api/login'
+    url = ('http://178.253.23.8:5000/api/login')
     # Пароли отправлять в хэшированном виде
     json_data = {'login': 'Андрей', 'pas': '12345'}
 
@@ -35,9 +35,23 @@ def login_acc():
         print(f"Error making the request: {e}")
 
 
+def dd():
+    url = ('http://127.0.0.1:3000/api/dd')
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        print(response.json())
+        # <ID> - удачно
+        # CODE13 - Данного логина нет
+        # CODE14 - пароль не верен
+
+    except requests.exceptions.RequestException as e:
+        print(f"Error making the request: {e}")
 
 # registration_acc()
-login_acc()
+# login_acc()
+dd()
+
 
 # 200
 # 300

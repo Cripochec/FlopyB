@@ -1,2 +1,18 @@
 07.12.2023 / 00:44:27 - INFO -  * Detected change in 'C:\\Project\\FlopyB\\Back.py', reloading
 07.12.2023 / 00:44:27 - INFO -  * Restarting with stat
+08.12.2023 / 07:33:57 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.43.199:5000
+08.12.2023 / 07:33:57 - INFO - [33mPress CTRL+C to quit[0m
+08.12.2023 / 07:36:39 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+08.12.2023 / 07:36:39 - INFO - [33mPress CTRL+C to quit[0m
+08.12.2023 / 07:36:39 - INFO -  * Restarting with stat
+08.12.2023 / 07:36:40 - WARNING -  * Debugger is active!
+08.12.2023 / 07:36:40 - INFO -  * Debugger PIN: 142-975-801
+08.12.2023 / 07:40:53 - INFO -  * Detected change in 'C:\\Project\\FlopyB\\Back.py', reloading
+08.12.2023 / 07:40:53 - INFO -  * Restarting with stat
+08.12.2023 / 07:54:35 - INFO -  * Restarting with stat
+08.12.2023 / 07:55:09 - INFO -  * Restarting with stat
+08.12.2023 / 07:55:47 - INFO -  * Restarting with stat

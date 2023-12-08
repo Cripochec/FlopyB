@@ -58,25 +58,6 @@ class login_acc(Resource):
             return "CODE14"
 
 
-        # if id == 0:
-        #     return res
-        # else:
-        #     return res[id]
-
-
-
-# class dd(Resource):
-#     def get(self, id):
-#         if id == 0:
-#             return res
-#         else:
-#             return res[id]
-#
-#     def delete(self, id):
-#         del res[id]
-#         return res
-
-
 api.add_resource(registration_acc, "/api/registration")
 api.add_resource(login_acc, "/api/login")
 api.init_app(app)
