@@ -36,7 +36,7 @@ def login_acc():
 
 
 def dd():
-    url = ('http://127.0.0.1:3000/api/dd')
+    url = ('http://178.253.23.8:5000/api/dd')
     try:
         response = requests.get(url)
         response.raise_for_status()
